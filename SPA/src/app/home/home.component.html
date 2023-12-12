@@ -1,0 +1,52 @@
+﻿<div class="p-4">
+    <div class="container">
+        <!-- <h1>Hi {{user?.firstName}}!</h1> -->
+        
+    </div>
+
+    
+</div>
+
+<div class="container" style="display: inline;">
+        <div style="width: 40%;display: inline-block;margin-left: 5%;">
+            <div id="pie_chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
+        <div style="width: 40%;display: inline-block;margin-left: 5%;">
+            <div id="bar_chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
+
+
+        <div style="width: 90%;display: inline-block;margin-left: 5%; margin-top: 5%;">
+            <table id="budgets">
+                <tr>
+        
+                    <th>Budget Type</th>
+                    <th>Budget($)</th>
+                    <th>Expense ($)</th>
+                    <th>Balance ($)</th>
+                </tr>
+                <tbody>
+                    <ng-container *ngFor="let item of budget_expenses">
+            
+                    <tr>
+                        <td>{{item.name}}</td>
+                    
+                        <td>
+                            $ {{item.budget_amount}}
+                        </td>
+                    <td>
+                        $ {{item.exp_amount}}
+                    </td>
+
+                    <td>
+                        $ {{item.budget_amount - item.exp_amount}}
+                    </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+            </table>
+
+        </div>
+
+</div>
+

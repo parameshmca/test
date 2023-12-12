@@ -1,0 +1,65 @@
+
+<div style="width: 90%; margin-left: 5% ; margin-top: 5%;">
+<div *ngIf="!showForm" >
+<h4>Config Budgets
+    <button class=" button button2 left-cls" (click)="create()">Add Budget</button>
+</h4>
+
+
+</div>
+
+
+<div class="card" *ngIf="showForm">
+    <h4 class="card-header">Create Budget</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">Name is required</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Amount</label>
+                <input type="number" formControlName="amount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+                <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                    <div *ngIf="f.amount.errors.required">Amount is required</div>
+                </div>
+            </div>
+            <div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                    Save
+                </button>
+
+                <button (click)="hideForm()" class="btn btn-seconday">
+                    
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+    
+</div>
+
+<table id="budgets" *ngIf="!showForm">
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+    </tr>
+    <tbody>
+        <ng-container *ngFor="let item of res_data">
+
+        <tr>
+        <td>
+            {{item.name}}
+        </td>
+        <td>
+            $ {{item.amount}}
+        </td>
+        </tr>
+    </ng-container>
+</tbody>
+</table>
+</div>
